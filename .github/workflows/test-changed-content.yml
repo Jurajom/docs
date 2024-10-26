@@ -4,61 +4,50 @@ name: Test changed content
 # **Why we have it**: Use GitHub Actions to run tests on changed content files.
 # **Who does it impact**: Docs engineering, open-source engineering contributors.
 
-on:
-  pull_request:
-    branches:
-      # This is important! If you make a PR against a megabranch, you
-      # might actually want to delete a file without setting up a
-      # redirect in its place. But if it's going into `main` we'll
-      # want to make sure that doesn't happen.
-      - main
-    paths:
-      - 'content/**'
 
-permissions:
-  contents: read
+Preskočiť na obsah
+Navigačné menu
+očk
 
-jobs:
-  test-changed-content:
-    runs-on: ${{ fromJSON('["ubuntu-latest", "ubuntu-20.04-xl"]')[github.repository == 'github/docs-internal'] }}
-    if: ${{ github.repository == 'github/docs-internal' || github.repository == 'github/docs' }}
-    steps:
-      # Each of these ifs needs to be repeated at each step to make sure the required check still runs
-      # Even if if doesn't do anything
-      - name: Check out repo
-        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
-        with:
-          # See https://github.com/tj-actions/changed-files#on-pull_request-
-          fetch-depth: 2
 
-      - uses: ./.github/actions/node-npm-setup
 
-      - uses: ./.github/actions/get-docs-early-access
-        if: ${{ github.repository == 'github/docs-internal' }}
-        with:
-          token: ${{ secrets.DOCS_BOT_PAT_READPUBLICKEY }}
+Prehľad
+úložiská
+8
+hviezdy
+Prehliadajte archívy a témy označené hviezdičkou
 
-      - uses: ./.github/actions/cache-nextjs
-
-      - name: Run build script
-        run: npm run build
-
-      - name: Get changed files
-        id: changed-files
-        uses: tj-actions/changed-files@40853de9f8ce2d6cfdc73c1b96f14e22ba44aec4 # v45.0.0
-        with:
-          # No need to escape the file names because we make the output of
-          # tj-actions/changed-files be set as an environment variable. Not
-          # as a direct input to the line of bash that uses it.
-          # See https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#using-an-intermediate-environment-variable
-          safe_output: false
-          files: 'content/**'
-          # Necessary so we can know what the old name was when a
-          # content file was renamed.
-          output_renamed_files_as_deleted_and_added: true
-
-      - name: Run tests
-        env:
-          CHANGED_FILES: ${{ steps.changed-files.outputs.modified_files }}
-          DELETED_FILES: ${{ steps.changed-files.outputs.deleted_files }}
-        run: npm test -- src/content-render/tests/render-changed-and-deleted-files.js
+3Všetky hviezdy
+3Všetky úložiská
+0Vaše úložiská
+3Repozitáre iných
+0Témy
+Filtrujte podľa jazykov
+1HTML
+Skočiť k priateľovi
+@octocat
+Hľadať hviezdy…
+Úložné priestory označené hviezdičkou
+violet-org / boysenberry-repo
+Testovanie
+ 226 123 Označené hviezdičkoudňa 28. júla 2016
+octocat / Lyžica-knife
+Toto repo slúži len na demonštračné účely.
+ HTML  12 593 146 542 Označené hviezdičkoudňa 27. januára 2011
+octocat / Hello-World
+Moje prvé úložisko na GitHub!
+ 2,712 2,430 Označené hviezdičkoudňa 26. januára 2011
+Témy označené hviezdičkou
+octocat zatiaľ nemá žiadne témy označené hviezdičkou.
+Päta
+© 2024 GitHub, Inc.
+Navigácia v päte
+Podmienky
+Ochrana osobných údajov
+Bezpečnosť
+Stav
+Docs
+Kontaktná adresa pobytu na Slovensku s tebou súhlasím so mnou 
+Spravovať súbory cookie
+Nezdieľajte moje osobné údaje
+o😀😃😄😉🫠😁😉😉😊😉😊😊😊😇😆😅:-(ctocat (The Octocat) / v hlavnej úloheuse-environment-on-buildnpx jacoblincool abouthttps://github.com/JacobLinCool/Bang-C/pull/35#issue-1269333802https://github.com/JacobLinCool/Bang-C/pull/35#issue-1269333802https://github.com/JacobLinCool/Bang-C/pull/35#issue-1269333802
